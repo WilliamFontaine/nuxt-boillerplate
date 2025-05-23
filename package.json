@@ -1,0 +1,40 @@
+{
+  "name": "nuxt-boilerplate",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
+    "lint:eslint": "eslint . --fix --ignore-pattern volumes/",
+    "lint:prettier": "prettier --write --list-different .",
+    "postinstall": "nuxt prepare",
+    "prepare": "husky",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "tag:patch": "pnpm version patch && git push --follow-tags",
+    "tag:minor": "pnpm version minor && git push --follow-tags",
+    "tag:major": "pnpm version major && git push --follow-tags"
+  },
+  "dependencies": {
+    "@iconify-json/heroicons": "1.2.2",
+    "@nuxt/eslint": "1.4.1",
+    "@nuxt/image": "1.10.0",
+    "@nuxt/ui": "3.1.2",
+    "@nuxtjs/i18n": "9.5.4",
+    "@prisma/nuxt": "^0.3.0",
+    "eslint": "^9.27.0",
+    "husky": "^9.1.7",
+    "nuxt": "^3.17.4",
+    "prettier": "^3.5.3",
+    "prisma": "^6.8.2",
+    "typescript": "^5.8.3",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "get-tsconfig": "4.10.1"
+  },
+  "packageManager": "pnpm@10.11.0"
+}

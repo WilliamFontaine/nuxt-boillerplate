@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_PASSWORD: P@ssw0rd
+      POSTGRES_USER: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    restart: 'no'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ADMINER_PLUGINS: 'tables-filter enum-option'
+      ADMINER_DESIGN: dracula
+      ADMINER_DEFAULT_SERVER: postgres
+    ports:
+      - '8000:8080'
+    restart: 'no'
