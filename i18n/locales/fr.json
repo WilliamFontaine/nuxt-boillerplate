@@ -1,0 +1,54 @@
+{
+  "app": {
+    "description": "Un point de départ simple et efficace",
+    "footer": "Réalisé par William Fontaine",
+    "name": "Nuxt Boilerplate"
+  },
+  "error": {
+    "404": {
+      "message": "La page que vous recherchez n'existe pas.",
+      "title": "Page non trouvée"
+    },
+    "actions": {
+      "back": "Retour",
+      "home": "Accueil"
+    },
+    "generic": {
+      "message": "Une erreur inattendue s'est produite.",
+      "title": "Une erreur est survenue"
+    }
+  },
+  "form": {
+    "post": {
+      "content": {
+        "label": "Contenu",
+        "placeholder": "Écrivez le contenu de votre post ici",
+        "required": "Le contenu est requis"
+      },
+      "delete": {
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "description": "Êtes-vous sûr de vouloir supprimer ce post ? Cette action est irréversible.",
+        "title": "Supprimer le post"
+      },
+      "error": {
+        "message": "Une erreur est survenue lors de la création du post",
+        "title": "Échec de la création du post"
+      },
+      "submit": "Créer le post",
+      "success": {
+        "message": "Votre post a été créé avec succès",
+        "title": "Post créé avec succès"
+      },
+      "title": {
+        "label": "Titre",
+        "placeholder": "Entrez le titre de votre post",
+        "required": "Le titre est requis"
+      }
+    }
+  },
+  "hero": {
+    "subtitle": "Un point de départ simple et efficace",
+    "title": "Nuxt Boilerplate"
+  }
+}
