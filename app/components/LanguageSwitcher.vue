@@ -4,7 +4,7 @@
       <UButton color="neutral" variant="ghost" :icon="currentLocaleIcon" />
     </UDropdownMenu>
     <template #fallback>
-      <UButton color="neutral" variant="ghost" icon="i-lucide-languages" disabled />
+      <UButton color="neutral" variant="ghost" icon="i-lucide:languages" disabled />
     </template>
   </ClientOnly>
 </template>
@@ -18,13 +18,13 @@ const localeConfig = {
 } as const
 
 const currentLocaleIcon = computed(
-  () => localeConfig[locale.value as keyof typeof localeConfig]?.icon ?? 'i-lucide-languages'
+  () => localeConfig[locale.value as keyof typeof localeConfig]?.icon ?? 'i-lucide:languages'
 )
 
 const languageItems = computed(() =>
   locales.value.map((lang) => ({
     label: lang.name,
-    icon: localeConfig[lang.code as keyof typeof localeConfig]?.icon ?? 'i-lucide-languages',
+    icon: localeConfig[lang.code as keyof typeof localeConfig]?.icon ?? 'i-lucide:languages',
     onSelect: () => setLocale(lang.code)
   }))
 )

@@ -9,7 +9,7 @@
           <UButton
             color="error"
             variant="ghost"
-            icon="i-lucide-trash-2"
+            icon="i-lucide:trash-2"
             size="sm"
             @click="showDeleteModal = true"
           />

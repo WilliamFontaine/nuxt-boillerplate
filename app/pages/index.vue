@@ -38,11 +38,17 @@ const handleDelete = async (post: Post) => {
     await $fetch<ApiResponse<Post>>(`/api/posts/${post.id}`, {
       method: 'DELETE'
     })
-    useNotifications().success({ title: t('form.post.success.title'), message: t('form.post.success.message') })
+    useNotifications().success({
+      title: t('form.post.success.title'),
+      message: t('form.post.success.message')
+    })
     refreshPosts()
   } catch (error) {
     console.error('Failed to delete post:', error)
-    useNotifications().error({ title: t('form.post.error.title'), message: t('form.post.error.message') })
+    useNotifications().error({
+      title: t('form.post.error.title'),
+      message: t('form.post.error.message')
+    })
   }
 }
 </script>

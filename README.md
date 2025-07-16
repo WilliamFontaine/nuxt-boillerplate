@@ -7,6 +7,7 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 ## ✨ Features
 
 ### 🚀 Framework & Core
+
 - **[Nuxt 4](https://nuxt.com/)** - Latest Vue.js framework with enhanced performance
 - **[Vue 3](https://vuejs.org/)** - Composition API with `<script setup>` syntax
 - **[TypeScript](https://www.typescriptlang.org/)** - Full type safety across client and server
@@ -14,24 +15,28 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 
 ### 🗄️ Database & Backend
+
 - **[Prisma ORM](https://www.prisma.io/)** - Type-safe database toolkit with migrations
 - **[PostgreSQL](https://www.postgresql.org/)** - Robust relational database
 - **[Docker Compose](https://docs.docker.com/compose/)** - Containerized development environment
 - **[Adminer](https://www.adminer.org/)** - Database management interface
 
 ### 🛠️ Developer Experience
+
 - **[i18n](https://i18n.nuxtjs.org/)** - Internationalization (French/English)
 - **[ESLint](https://eslint.org/)** + **[Prettier](https://prettier.io/)** - Code quality and formatting
 - **[Husky](https://typicode.github.io/husky/)** - Git hooks for quality assurance
 - **[pnpm](https://pnpm.io/)** - Fast, efficient package manager
 
 ### 🏗️ Architecture
+
 - **Monorepo Structure** - Shared utilities and types via `shared/` directory
 - **Auto-imports** - Components, composables, and utilities
 - **Full-stack API** - Server routes with Nuxt 4 server engine
 - **Form System** - Built-in validation with Yup
 
 ### 🚀 Deployment
+
 - **GitHub Actions** - Automated CI/CD pipeline
 - **Docker** - Production-ready containerization
 - **Semantic Versioning** - Automated version management
@@ -44,45 +49,50 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 
 ## 🚀 Getting Started
 
-### Option 1: Quick Setup with Renaming (Recommended)
+1. **Clone the repository**
 
-1. **Clone and navigate to project**
    ```bash
    git clone <repository-url> my-project
    cd my-project
    ```
 
-2. **Rename the project** (updates all references)
+2. **Customize the project** (optional but recommended)
+
    ```bash
    ./rename-project.sh my-awesome-project
    ```
 
-3. **Start development**
+   This script automatically updates package names, Docker containers, and i18n files.
+
+3. **Setup environment**
+
    ```bash
-   docker compose up -d              # Start database
-   npx prisma migrate dev            # Run migrations
-   pnpm dev                          # Start dev server
+   cp .env.example .env
+   # Edit .env with your database configuration if needed
    ```
 
-### Option 2: Standard Setup
+4. **Install dependencies**
 
-```bash
-# Clone and install
-git clone <repository-url> my-project
-cd my-project
-pnpm install
+   ```bash
+   pnpm install
+   ```
 
-# Environment setup
-cp .env.example .env
-# Edit .env with your database URL if needed
+5. **Start the database**
 
-# Database setup
-docker compose up -d
-npx prisma migrate dev
+   ```bash
+   docker compose up -d
+   ```
 
-# Start development
-pnpm dev
-```
+6. **Setup the database**
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+7. **Start development**
+   ```bash
+   pnpm dev
+   ```
 
 ### 🌐 Access Points
 
@@ -123,12 +133,14 @@ pnpm dev
 ## 🎨 Architecture Highlights
 
 ### Nuxt 4 Features
+
 - New `app/` directory structure
 - Enhanced auto-imports for better DX
 - Improved server engine
 - Better TypeScript integration
 
 ### Shared Utilities System
+
 The `shared/` directory provides auto-imported utilities across the entire stack:
 
 ```typescript
@@ -138,11 +150,13 @@ import type { ApiResponse } from '~/shared/types/api'
 ```
 
 ### Database Pattern
+
 - **Prisma Client Singleton**: Prevents connection pool issues
 - **Type Safety**: Full TypeScript integration
 - **Auto-migrations**: Database updates on deployment
 
 ### API Design
+
 Consistent response format across all endpoints:
 
 ```typescript
@@ -153,6 +167,7 @@ type ApiResponse<T> = {
 ```
 
 ### Form System
+
 Built-in validation with reusable components:
 
 ```vue
@@ -162,27 +177,27 @@ Built-in validation with reusable components:
 ```
 
 ### Internationalization
+
 - **Default**: French (no URL prefix)
 - **Secondary**: English (`/en` prefix)
 - **Strategy**: `prefix_except_default`
 - **Features**: Lazy loading, browser detection, cookie persistence
 
-
 ## 🔧 Development
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Build for production |
-| `pnpm preview` | Preview production build |
-| `pnpm lint` | Run ESLint + Prettier |
-| `pnpm lint:eslint` | Run ESLint only |
-| `pnpm lint:prettier` | Run Prettier only |
-| `pnpm db:generate` | Generate Prisma client |
-| `pnpm db:push` | Push schema to database |
-| `pnpm db:studio` | Open Prisma Studio |
+| Command              | Description              |
+| -------------------- | ------------------------ |
+| `pnpm dev`           | Start development server |
+| `pnpm build`         | Build for production     |
+| `pnpm preview`       | Preview production build |
+| `pnpm lint`          | Run ESLint + Prettier    |
+| `pnpm lint:eslint`   | Run ESLint only          |
+| `pnpm lint:prettier` | Run Prettier only        |
+| `pnpm db:generate`   | Generate Prisma client   |
+| `pnpm db:push`       | Push schema to database  |
+| `pnpm db:studio`     | Open Prisma Studio       |
 
 ### Database Operations
 
@@ -214,6 +229,7 @@ NUXT_DATABASE_URL="postgresql://postgres:P@ssw0rd@localhost:5432/database"
 ### Code Quality
 
 The project enforces quality through:
+
 - **Pre-commit hooks** (Husky)
 - **ESLint** for code linting
 - **Prettier** for formatting
@@ -233,6 +249,7 @@ pnpm tag:major      # x.0.0 (breaking changes)
 ```
 
 **Deployment process:**
+
 1. 🏗️ Build Docker image
 2. 📦 Push to GitHub Container Registry
 3. 🗄️ Run database migrations
@@ -253,6 +270,7 @@ docker run -p 3000:3000 \
 ### Production Environment
 
 Required environment variables:
+
 ```bash
 NUXT_DATABASE_URL="postgresql://user:password@host:5432/database"
 NODE_ENV="production"
@@ -263,6 +281,7 @@ NODE_ENV="production"
 ### Using the Rename Script
 
 The `rename-project.sh` script automatically updates:
+
 - ✅ Package name in `package.json`
 - ✅ Project titles in i18n files
 - ✅ Docker container names
@@ -274,6 +293,7 @@ The `rename-project.sh` script automatically updates:
 ```
 
 The script will:
+
 1. Validate project name format (alphanumeric + hyphens)
 2. Update all configuration files
 3. Convert name to proper display title

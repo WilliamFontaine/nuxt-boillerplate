@@ -1,18 +1,13 @@
 <template>
   <ClientOnly>
     <UButton
-      :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+      :icon="isDark ? 'i-lucide:moon' : 'i-lucide:sun'"
       color="neutral"
       variant="ghost"
       @click="toggleDark()"
     />
     <template #fallback>
-      <UButton
-        icon="i-lucide-sun"
-        color="neutral"
-        variant="ghost"
-        disabled
-      />
+      <UButton icon="i-lucide:sun" color="neutral" variant="ghost" disabled />
     </template>
   </ClientOnly>
 </template>
