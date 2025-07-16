@@ -1,7 +1,7 @@
 services:
   postgres:
     image: 'postgres:latest'
-    container_name: postgres
+    container_name: nuxt-boilerplate_postgres
     environment:
       POSTGRES_DB: database
       POSTGRES_PASSWORD: P@ssw0rd
@@ -19,7 +19,7 @@ services:
 
   adminer:
     image: adminer:latest
-    container_name: adminer
+    container_name: nuxt-boilerplate_adminer
     depends_on:
       postgres:
         condition: service_healthy

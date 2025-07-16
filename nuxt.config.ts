@@ -1,13 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/i18n', '@prisma/nuxt', '@nuxt/image'],
 
-  css: ['~/assets/css/main.css'],
+  css: ['/assets/css/main.css'],
 
   imports: {
-    dirs: ['models/**', 'types/**', 'composables/**']
+    dirs: ['../shared/**', 'composables/**']
+  },
+
+  nitro: {
+    imports: {
+      dirs: ['shared/**']
+    }
   },
 
   i18n: {
@@ -32,6 +37,9 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
+    },
+    bundle: {
+      optimizeTranslationDirective: false
     }
   },
 
@@ -47,5 +55,7 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     }
-  }
+  },
+
+  compatibilityDate: '2025-07-16'
 })
