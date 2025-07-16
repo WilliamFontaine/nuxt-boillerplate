@@ -48,25 +48,7 @@ else
     echo "⚠️  package.json not found"
 fi
 
-# 2. Update README.md if it contains references
-echo "📖 Checking README.md..."
-if [ -f "README.md" ]; then
-    if grep -q "nuxt-boilerplate" README.md; then
-        echo "📝 Updating README.md..."
-        if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i '' "s/nuxt-boilerplate/$NEW_PROJECT_NAME/g" README.md
-        else
-            sed -i "s/nuxt-boilerplate/$NEW_PROJECT_NAME/g" README.md
-        fi
-        echo "✅ README.md updated"
-    else
-        echo "ℹ️  No nuxt-boilerplate references found in README.md"
-    fi
-else
-    echo "ℹ️  README.md not found"
-fi
-
-# 3. Update Docker Compose files if they contain references
+# 2. Update Docker Compose files if they contain references
 echo "🐳 Checking Docker Compose files..."
 for compose_file in "docker-compose.yml" "docker-compose.yaml" "compose.yml" "compose.yaml"; do
     if [ -f "$compose_file" ]; then
@@ -84,7 +66,7 @@ for compose_file in "docker-compose.yml" "docker-compose.yaml" "compose.yml" "co
     fi
 done
 
-# 4. Update GitHub Actions workflows
+# 3. Update GitHub Actions workflows
 echo "⚙️  Checking GitHub Actions workflows..."
 if [ -d ".github/workflows" ]; then
     for workflow_file in .github/workflows/*.yml .github/workflows/*.yaml; do
@@ -104,7 +86,7 @@ else
     echo "ℹ️  .github/workflows directory not found"
 fi
 
-# 5. Reinstall dependencies to update lock file
+# 4. Reinstall dependencies to update lock file
 echo "📦 Reinstalling dependencies..."
 if command -v pnpm &> /dev/null; then
     echo "🔧 Using pnpm..."
@@ -119,7 +101,7 @@ else
     echo "⚠️  No package manager found, please reinstall dependencies manually"
 fi
 
-# 6. Clean up the script itself
+# 5. Clean up the script itself
 echo "🧹 Cleaning up..."
 read -p "Do you want to remove this renaming script? (y/N): " -n 1 -r
 echo

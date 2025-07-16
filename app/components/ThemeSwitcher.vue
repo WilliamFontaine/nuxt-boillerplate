@@ -7,12 +7,7 @@
       @click="toggleDark()"
     />
     <template #fallback>
-      <UButton
-        icon="i-lucide-sun"
-        color="neutral"
-        variant="ghost"
-        disabled
-      />
+      <UButton icon="i-lucide-sun" color="neutral" variant="ghost" disabled />
     </template>
   </ClientOnly>
 </template>

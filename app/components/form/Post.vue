@@ -41,12 +41,18 @@ const onSubmit = async () => {
       method: 'POST',
       body: state
     })
-    useNotifications().success({ title: t('form.post.success.title'), message: t('form.post.success.message') })
+    useNotifications().success({
+      title: t('form.post.success.title'),
+      message: t('form.post.success.message')
+    })
     resetState()
     emit('success')
   } catch (ignore) {
     console.error('Failed to create post:', ignore)
-    useNotifications().error({ title: t('form.post.error.title'), message: t('form.post.error.message') })
+    useNotifications().error({
+      title: t('form.post.error.title'),
+      message: t('form.post.error.message')
+    })
   } finally {
     loading.value = false
   }
