@@ -56,8 +56,8 @@ jobs:
           context: . # Use the current directory as build context
           push: true # Push the image after building
           tags: |
-            ghcr.io/${{ github.repository_owner }}/app:${{ env.TAG_NAME }}
-            ghcr.io/${{ github.repository_owner }}/app:latest
+            ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:${{ env.TAG_NAME }}
+            ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:latest
 
   # Deploy the application to the production server
   deploy:
@@ -80,28 +80,28 @@ jobs:
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             echo "📥 Pulling the latest Docker image..."
-            docker pull ghcr.io/${{ github.repository_owner }}/app:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:latest
 
             echo "🛑 Stopping and removing the existing container..."
-            docker stop app || true
-            docker rm app || true
+            docker stop nuxt-boilerplate || true
+            docker rm nuxt-boilerplate || true
 
             echo "🔄 Running database migrations..."
             docker run --rm \
-              --network app_webnet \
-              --env-file ~/app/.env \
-              ghcr.io/${{ github.repository_owner }}/app:latest \
+              --network nuxt-boilerplate_webnet \
+              --env-file ~/nuxt-boilerplate/.env \
+              ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:latest \
               npx prisma migrate deploy
 
             echo "🚀 Starting the new container..."
             docker run -d \
-              --name app \
+              --name nuxt-boilerplate \
               --restart unless-stopped \
-              -p 3002:3000 \
-              --env-file ~/app/.env \
-              ghcr.io/${{ github.repository_owner }}/app:latest
+              -p 3000:3000 \
+              --env-file ~/nuxt-boilerplate/.env \
+              ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:latest
 
             echo "🔗 Connecting the container to the network..."
-            docker network connect app_webnet app
+            docker network connect nuxt-boilerplate_webnet nuxt-boilerplate
 
             echo "✅ Deployment completed successfully!"

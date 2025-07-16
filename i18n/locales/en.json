@@ -23,13 +23,16 @@
       "content": {
         "label": "Content",
         "placeholder": "Write your post content here",
-        "required": "Content is required"
+        "required": "Content is required",
+        "minLength": "Content must be at least 10 characters long",
+        "maxLength": "Content cannot exceed 1000 characters"
       },
       "delete": {
         "cancel": "Cancel",
         "delete": "Delete",
         "description": "Are you sure you want to delete this post? This action cannot be undone.",
-        "title": "Delete Post"
+        "title": "Delete Post",
+        "tooltip": "Delete this post"
       },
       "error": {
         "message": "An error occurred while creating the post",
@@ -43,7 +46,9 @@
       "title": {
         "label": "Title",
         "placeholder": "Enter post title",
-        "required": "Title is required"
+        "required": "Title is required",
+        "minLength": "Title must be at least 3 characters long",
+        "maxLength": "Title cannot exceed 100 characters"
       }
     }
   },

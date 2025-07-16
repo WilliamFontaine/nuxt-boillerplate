@@ -45,7 +45,5 @@ defineProps<{
   placeholder?: string
 }>()
 
-defineEmits<{
-  (e: 'update:modelValue', value: any): void
-}>()
+defineEmits<(e: 'update:modelValue', value: any) => void>()
 </script>

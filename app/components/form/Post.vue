@@ -32,9 +32,7 @@ const { state, schema, resetState } = usePostForm()
 const loading = ref(false)
 const { t } = useI18n()
 
-const emit = defineEmits<{
-  (e: 'success'): void
-}>()
+const emit = defineEmits<(e: 'success') => void>()
 
 const onSubmit = async () => {
   loading.value = true
@@ -43,11 +41,12 @@ const onSubmit = async () => {
       method: 'POST',
       body: state
     })
-    useNotifications().success(t('form.post.success.title'), t('form.post.success.message'))
+    useNotifications().success({ title: t('form.post.success.title'), message: t('form.post.success.message') })
     resetState()
     emit('success')
-  } catch (error) {
-    useNotifications().error(t('form.post.error.title'), t('form.post.error.message'))
+  } catch (ignore) {
+    console.error('Failed to create post:', ignore)
+    useNotifications().error({ title: t('form.post.error.title'), message: t('form.post.error.message') })
   } finally {
     loading.value = false
   }

@@ -23,13 +23,16 @@
       "content": {
         "label": "Contenu",
         "placeholder": "Écrivez le contenu de votre post ici",
-        "required": "Le contenu est requis"
+        "required": "Le contenu est requis",
+        "minLength": "Le contenu doit contenir au moins 10 caractères",
+        "maxLength": "Le contenu ne peut pas dépasser 1000 caractères"
       },
       "delete": {
         "cancel": "Annuler",
         "delete": "Supprimer",
         "description": "Êtes-vous sûr de vouloir supprimer ce post ? Cette action est irréversible.",
-        "title": "Supprimer le post"
+        "title": "Supprimer le post",
+        "tooltip": "Supprimer ce post"
       },
       "error": {
         "message": "Une erreur est survenue lors de la création du post",
@@ -43,7 +46,9 @@
       "title": {
         "label": "Titre",
         "placeholder": "Entrez le titre de votre post",
-        "required": "Le titre est requis"
+        "required": "Le titre est requis",
+        "minLength": "Le titre doit contenir au moins 3 caractères",
+        "maxLength": "Le titre ne peut pas dépasser 100 caractères"
       }
     }
   },

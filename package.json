@@ -2,6 +2,7 @@
   "name": "nuxt-boilerplate",
   "private": true,
   "type": "module",
+  "version": "0.0.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -19,22 +20,20 @@
     "tag:major": "pnpm version major && git push --follow-tags"
   },
   "dependencies": {
-    "@iconify-json/heroicons": "1.2.2",
-    "@nuxt/eslint": "1.4.1",
+    "@iconify-json/lucide": "^1.2.57",
     "@nuxt/image": "1.10.0",
-    "@nuxt/ui": "3.1.2",
-    "@nuxtjs/i18n": "9.5.4",
+    "@nuxt/ui": "3.2.0",
+    "@nuxtjs/i18n": "9.5.6",
     "@prisma/nuxt": "^0.3.0",
-    "eslint": "^9.27.0",
-    "husky": "^9.1.7",
-    "nuxt": "^3.17.4",
-    "prettier": "^3.5.3",
-    "prisma": "^6.8.2",
-    "typescript": "^5.8.3",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "get-tsconfig": "4.10.1"
-  },
-  "packageManager": "pnpm@10.11.0"
+    "@nuxt/eslint": "1.5.2",
+    "eslint": "^9.31.0",
+    "husky": "^9.1.7",
+    "nuxt": "4.0.0",
+    "prettier": "^3.6.2",
+    "prisma": "^6.12.0",
+    "typescript": "^5.8.3"
+  }
 }
