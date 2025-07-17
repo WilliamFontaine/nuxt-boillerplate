@@ -1,0 +1,50 @@
+{
+  "preset": "conventionalcommits",
+  "releaseCount": 0,
+  "skipUnstable": true,
+  "outputUnreleased": true,
+  "transform": {
+    "feat": {
+      "title": "✨ Features"
+    },
+    "fix": {
+      "title": "🐛 Bug Fixes"
+    },
+    "docs": {
+      "title": "📚 Documentation"
+    },
+    "style": {
+      "title": "💄 Styling"
+    },
+    "refactor": {
+      "title": "♻️  Code Refactoring"
+    },
+    "perf": {
+      "title": "⚡ Performance Improvements"
+    },
+    "test": {
+      "title": "✅ Tests"
+    },
+    "build": {
+      "title": "🏗️  Build System"
+    },
+    "ci": {
+      "title": "🔧 Continuous Integration"
+    },
+    "chore": {
+      "title": "🔨 Maintenance"
+    }
+  },
+  "types": [
+    {"type": "feat", "section": "✨ Features"},
+    {"type": "fix", "section": "🐛 Bug Fixes"},
+    {"type": "docs", "section": "📚 Documentation"},
+    {"type": "style", "section": "💄 Styling"},
+    {"type": "refactor", "section": "♻️  Code Refactoring"},
+    {"type": "perf", "section": "⚡ Performance Improvements"},
+    {"type": "test", "section": "✅ Tests"},
+    {"type": "build", "section": "🏗️  Build System"},
+    {"type": "ci", "section": "🔧 Continuous Integration"},
+    {"type": "chore", "section": "🔨 Maintenance"}
+  ]
+}
