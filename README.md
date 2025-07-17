@@ -13,6 +13,8 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 - **[TypeScript](https://www.typescriptlang.org/)** - Full type safety across client and server
 - **[Nuxt UI](https://ui.nuxt.com/)** - Beautiful components built on Tailwind CSS
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Nuxt Image](https://image.nuxt.com/)** - Optimized image loading and processing
+- **[Lucide Icons](https://lucide.dev/)** - Beautiful, customizable SVG icons
 
 ### 🗄️ Database & Backend
 
@@ -26,14 +28,19 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 - **[i18n](https://i18n.nuxtjs.org/)** - Internationalization (French/English)
 - **[ESLint](https://eslint.org/)** + **[Prettier](https://prettier.io/)** - Code quality and formatting
 - **[Husky](https://typicode.github.io/husky/)** - Git hooks for quality assurance
-- **[pnpm](https://pnpm.io/)** - Fast, efficient package manager
+- **[Commitlint](https://commitlint.js.org/)** - Conventional commit enforcement
+- **[pnpm](https://pnpm.io/)** - Fast, efficient package manager with workspaces
+- **[Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog)** - Automated changelog generation
 
 ### 🏗️ Architecture
 
 - **Monorepo Structure** - Shared utilities and types via `shared/` directory
 - **Auto-imports** - Components, composables, and utilities
 - **Full-stack API** - Server routes with Nuxt 4 server engine
-- **Form System** - Built-in validation with Yup
+- **Form System** - Built-in validation with Yup and reusable form components
+- **Theme System** - Dark/light mode with persistent preferences
+- **Notification System** - Toast notifications with useNotifications composable
+- **Type Safety** - Full TypeScript integration across client and server
 
 ### 🚀 Deployment
 
@@ -44,13 +51,14 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 
 ## 📋 Prerequisites
 
-- **[Node.js](https://nodejs.org/)** (v18+ recommended)
+- **[Node.js](https://nodejs.org/)** (v18+ recommended, v22+ for production)
 - **[pnpm](https://pnpm.io/)** (preferred package manager)
 - **[Docker](https://www.docker.com/)** & **[Docker Compose](https://docs.docker.com/compose/)**
+- **[Git](https://git-scm.com/)** (for version control and deployment)
 
 ## 🚀 Getting Started
 
-### Option 1: Quick Setup with Renaming (Recommended)
+### Quick Setup
 
 1. **Clone and navigate to project**
 
@@ -59,38 +67,29 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
    cd my-project
    ```
 
-2. **Rename the project** (updates all references)
+2. **Rename the project** (recommended - updates all references)
 
    ```bash
    ./rename-project.sh my-awesome-project
    ```
 
-3. **Start development**
+   _Or skip this step if you prefer the default name_
+
+3. **Environment setup** (optional)
+
    ```bash
+   cp .env.example .env
+   # Edit .env with your database URL if needed
+   ```
+
+4. **Install dependencies and start development**
+
+   ```bash
+   pnpm install                      # Install dependencies
    docker compose up -d              # Start database
    npx prisma migrate dev            # Run migrations
    pnpm dev                          # Start dev server
    ```
-
-### Option 2: Standard Setup
-
-```bash
-# Clone and install
-git clone <repository-url> my-project
-cd my-project
-pnpm install
-
-# Environment setup
-cp .env.example .env
-# Edit .env with your database URL if needed
-
-# Database setup
-docker compose up -d
-npx prisma migrate dev
-
-# Start development
-pnpm dev
-```
 
 ### 🌐 Access Points
 
@@ -101,9 +100,9 @@ pnpm dev
 ## 📁 Project Structure
 
 ```
-├── app/                    # Main Nuxt 4 application
-│   ├── components/         # Vue components (auto-imported)
-│   ├── composables/        # Vue composables (auto-imported)
+├── app/                   # Main Nuxt 4 application
+│   ├── components/        # Vue components (auto-imported)
+│   ├── composables/       # Vue composables (auto-imported)
 │   ├── layouts/           # Page layouts
 │   ├── pages/             # Application routes
 │   ├── assets/            # CSS and static assets
@@ -174,6 +173,30 @@ Built-in validation with reusable components:
 </template>
 ```
 
+### Theme System
+
+Built-in dark/light mode with persistent preferences:
+
+```vue
+<template>
+  <ThemeSwitcher />
+</template>
+```
+
+### Notification System
+
+Toast notifications with the useNotifications composable:
+
+```typescript
+const { addNotification } = useNotifications()
+
+addNotification({
+  type: 'success',
+  title: 'Success!',
+  description: 'Operation completed successfully'
+})
+```
+
 ### Internationalization
 
 - **Default**: French (no URL prefix)
@@ -185,19 +208,23 @@ Built-in validation with reusable components:
 
 ### Available Scripts
 
-| Command                   | Description                     |
-| ------------------------- | ------------------------------- |
-| `pnpm dev`                | Start development server        |
-| `pnpm build`              | Build for production            |
-| `pnpm preview`            | Preview production build        |
-| `pnpm lint`               | Run ESLint + Prettier           |
-| `pnpm lint:eslint`        | Run ESLint only                 |
-| `pnpm lint:prettier`      | Run Prettier only               |
-| `pnpm db:generate`        | Generate Prisma client          |
-| `pnpm db:push`            | Push schema to database         |
-| `pnpm db:studio`          | Open Prisma Studio              |
-| `pnpm changelog:generate` | Generate changelog from commits |
-| `pnpm changelog:preview`  | Preview changelog changes       |
+| Command                   | Description                      |
+| ------------------------- | -------------------------------- |
+| `pnpm dev`                | Start development server         |
+| `pnpm build`              | Build for production             |
+| `pnpm preview`            | Preview production build         |
+| `pnpm lint`               | Run ESLint + Prettier            |
+| `pnpm lint:eslint`        | Run ESLint only                  |
+| `pnpm lint:prettier`      | Run Prettier only                |
+| `pnpm db:generate`        | Generate Prisma client           |
+| `pnpm db:push`            | Push schema to database          |
+| `pnpm db:studio`          | Open Prisma Studio               |
+| `pnpm changelog:generate` | Generate changelog from commits  |
+| `pnpm changelog:preview`  | Preview changelog changes        |
+| `pnpm version:check`      | Check current version and status |
+| `pnpm tag:patch`          | Create patch release             |
+| `pnpm tag:minor`          | Create minor release             |
+| `pnpm tag:major`          | Create major release             |
 
 ### Database Operations
 
@@ -225,6 +252,25 @@ NUXT_DATABASE_URL="postgresql://postgres:P@ssw0rd@localhost:5432/database"
 # Optional customization
 # NUXT_PUBLIC_API_BASE="http://localhost:3000"
 ```
+
+### UI Components
+
+The project includes several built-in components:
+
+- **Form Components**: Input, Password, Select, Textarea with validation
+- **ThemeSwitcher**: Toggle between dark and light modes
+- **LanguageSwitcher**: Switch between French and English
+- **PostCard**: Display post content with styling
+- **Notification System**: Toast notifications via useNotifications composable
+
+### Configuration Files
+
+- **`app.config.ts`** - Nuxt UI theme configuration (blue/cyan/slate colors)
+- **`nuxt.config.ts`** - Main Nuxt configuration with auto-imports
+- **`commitlint.config.ts`** - Conventional commit rules
+- **`eslint.config.mts`** - ESLint configuration
+- **`pnpm-workspace.yaml`** - Workspace configuration
+- **`docker-compose.yml`** - PostgreSQL + Adminer setup
 
 ### Code Quality
 

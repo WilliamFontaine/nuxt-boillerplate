@@ -1,0 +1,10 @@
+## 0.0.0 (2025-07-17)
+
+- docs: enhance README with comprehensive project documentation ([334da27](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/334da27))
+- docs: update issue templates ([7cd235f](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/7cd235f))
+- chore: add MIT license ([d2f2281](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/d2f2281))
+- chore: remove test file ([d926263](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/d926263))
+- feat: add test file for commitlint validation ([2da82e2](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/2da82e2))
+- feat: initial project setup ([19eb2eb](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/19eb2eb))
+- feat: migrate to Nuxt 4 with enhanced project structure ([6389754](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/6389754))
+- test: validate commitlint hook is working ([f965067](https://github.com/WilliamFontaine/nuxt-boillerplate/commit/f965067))
