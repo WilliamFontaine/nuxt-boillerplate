@@ -8,7 +8,7 @@ on:
 
 # Required permissions for GitHub Actions
 permissions:
-  contents: read # Read repository contents
+  contents: write # Write to create releases
   packages: write # Push to GitHub Container Registry
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -58,6 +58,18 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:${{ env.TAG_NAME }}
             ghcr.io/${{ github.repository_owner }}/nuxt-boilerplate:latest
+
+      # Step 7: Create GitHub Release with changelog
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          release_name: Release ${{ env.TAG_NAME }}
+          body_path: CHANGELOG.md
+          draft: false
+          prerelease: false
 
   # Deploy the application to the production server
   deploy:

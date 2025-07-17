@@ -40,6 +40,7 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 - **GitHub Actions** - Automated CI/CD pipeline
 - **Docker** - Production-ready containerization
 - **Semantic Versioning** - Automated version management
+- **Changelog Generation** - Automatic changelog from conventional commits
 
 ## 📋 Prerequisites
 
@@ -184,17 +185,20 @@ Built-in validation with reusable components:
 
 ### Available Scripts
 
-| Command              | Description              |
-| -------------------- | ------------------------ |
-| `pnpm dev`           | Start development server |
-| `pnpm build`         | Build for production     |
-| `pnpm preview`       | Preview production build |
-| `pnpm lint`          | Run ESLint + Prettier    |
-| `pnpm lint:eslint`   | Run ESLint only          |
-| `pnpm lint:prettier` | Run Prettier only        |
-| `pnpm db:generate`   | Generate Prisma client   |
-| `pnpm db:push`       | Push schema to database  |
-| `pnpm db:studio`     | Open Prisma Studio       |
+| Command                  | Description                        |
+| ------------------------ | ---------------------------------- |
+| `pnpm dev`               | Start development server           |
+| `pnpm build`             | Build for production               |
+| `pnpm preview`           | Preview production build           |
+| `pnpm lint`              | Run ESLint + Prettier              |
+| `pnpm lint:eslint`       | Run ESLint only                    |
+| `pnpm lint:prettier`     | Run Prettier only                  |
+| `pnpm db:generate`       | Generate Prisma client             |
+| `pnpm db:push`           | Push schema to database            |
+| `pnpm db:studio`         | Open Prisma Studio                 |
+| `pnpm changelog:generate`| Generate changelog from commits    |
+| `pnpm changelog:preview` | Preview changelog changes          |
+| `pnpm version:check`     | Check current version and git status |
 
 ### Database Operations
 
@@ -234,23 +238,90 @@ The project enforces quality through:
 
 ## 🚀 Deployment
 
-### Automated Deployment
+### Versioning & Releases
 
-Deployment is triggered by pushing version tags:
+This project uses **conventional commits** and **automated changelog generation**. All releases are managed through semantic versioning with automatic changelog updates.
+
+#### Conventional Commits
+
+Use structured commit messages to enable automatic changelog generation:
 
 ```bash
-# Semantic versioning
-pnpm tag:patch      # 0.0.x (bug fixes)
-pnpm tag:minor      # 0.x.0 (new features)
-pnpm tag:major      # x.0.0 (breaking changes)
+# Feature commits (minor version bump)
+git commit -m "feat: add user authentication system"
+git commit -m "feat(api): implement user profile endpoints"
+
+# Bug fix commits (patch version bump)
+git commit -m "fix: resolve database connection timeout"
+git commit -m "fix(ui): correct button alignment on mobile"
+
+# Documentation commits
+git commit -m "docs: update API documentation"
+git commit -m "docs(readme): add installation instructions"
+
+# Other commit types
+git commit -m "style: improve code formatting"
+git commit -m "refactor: optimize database queries"
+git commit -m "test: add user authentication tests"
+git commit -m "chore: update dependencies"
 ```
 
-**Deployment process:**
+#### Supported Commit Types
 
-1. 🏗️ Build Docker image
-2. 📦 Push to GitHub Container Registry
-3. 🗄️ Run database migrations
-4. 🚀 Deploy to production
+- `feat:` - New features (triggers minor version bump)
+- `fix:` - Bug fixes (triggers patch version bump)
+- `docs:` - Documentation changes
+- `style:` - Code style changes (formatting, etc.)
+- `refactor:` - Code refactoring
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks
+- `perf:` - Performance improvements
+- `ci:` - CI/CD changes
+- `build:` - Build system changes
+
+#### Release Process
+
+Before creating a release, you can preview the changes:
+
+```bash
+# Check current version and git status
+pnpm version:check
+
+# Preview what will be in the changelog
+pnpm changelog:preview
+```
+
+Create releases using semantic versioning:
+
+```bash
+# Patch release (0.0.x) - Bug fixes only
+pnpm tag:patch
+
+# Minor release (0.x.0) - New features, backward compatible
+pnpm tag:minor
+
+# Major release (x.0.0) - Breaking changes
+pnpm tag:major
+```
+
+**Each release automatically:**
+
+1. 📝 Generates changelog from conventional commits
+2. 📄 Updates `CHANGELOG.md` file
+3. 💾 Commits changelog changes
+4. 🏷️ Creates version tag
+5. 🚀 Pushes to repository
+6. 🏗️ Triggers deployment pipeline
+
+#### Deployment Pipeline
+
+When a version tag is pushed, the GitHub Actions workflow automatically:
+
+1. 🏗️ Builds Docker image
+2. 📦 Pushes to GitHub Container Registry
+3. 🗄️ Runs database migrations
+4. 🚀 Deploys to production
+5. 📋 Creates GitHub Release with changelog
 
 ### Manual Deployment
 
@@ -320,9 +391,30 @@ The template includes example Post functionality. To remove:
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
 4. Run `pnpm lint` to ensure code quality
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
+5. Commit your changes using conventional commits (`git commit -m 'feat: add amazing feature'`)
 6. Push to the branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
+
+### Commit Message Guidelines
+
+This project uses conventional commits for automated changelog generation. Please follow these guidelines:
+
+- Use present tense ("add feature" not "added feature")
+- Use imperative mood ("move cursor to..." not "moves cursor to...")
+- Limit the first line to 72 characters or less
+- Reference issues and pull requests liberally after the first line
+- Consider starting the commit message with an applicable emoji for visual clarity
+
+**Examples:**
+```bash
+feat: add user authentication system
+fix: resolve database connection timeout
+docs: update API documentation
+style: improve button component styling
+refactor: optimize database query performance
+test: add user registration tests
+chore: update project dependencies
+```
 
 ## 📄 License
 
