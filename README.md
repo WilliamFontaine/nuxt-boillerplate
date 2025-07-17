@@ -185,20 +185,19 @@ Built-in validation with reusable components:
 
 ### Available Scripts
 
-| Command                  | Description                        |
-| ------------------------ | ---------------------------------- |
-| `pnpm dev`               | Start development server           |
-| `pnpm build`             | Build for production               |
-| `pnpm preview`           | Preview production build           |
-| `pnpm lint`              | Run ESLint + Prettier              |
-| `pnpm lint:eslint`       | Run ESLint only                    |
-| `pnpm lint:prettier`     | Run Prettier only                  |
-| `pnpm db:generate`       | Generate Prisma client             |
-| `pnpm db:push`           | Push schema to database            |
-| `pnpm db:studio`         | Open Prisma Studio                 |
-| `pnpm changelog:generate`| Generate changelog from commits    |
-| `pnpm changelog:preview` | Preview changelog changes          |
-| `pnpm version:check`     | Check current version and git status |
+| Command                   | Description                     |
+| ------------------------- | ------------------------------- |
+| `pnpm dev`                | Start development server        |
+| `pnpm build`              | Build for production            |
+| `pnpm preview`            | Preview production build        |
+| `pnpm lint`               | Run ESLint + Prettier           |
+| `pnpm lint:eslint`        | Run ESLint only                 |
+| `pnpm lint:prettier`      | Run Prettier only               |
+| `pnpm db:generate`        | Generate Prisma client          |
+| `pnpm db:push`            | Push schema to database         |
+| `pnpm db:studio`          | Open Prisma Studio              |
+| `pnpm changelog:generate` | Generate changelog from commits |
+| `pnpm changelog:preview`  | Preview changelog changes       |
 
 ### Database Operations
 
@@ -406,6 +405,7 @@ This project uses conventional commits for automated changelog generation. Pleas
 - Consider starting the commit message with an applicable emoji for visual clarity
 
 **Examples:**
+
 ```bash
 feat: add user authentication system
 fix: resolve database connection timeout
