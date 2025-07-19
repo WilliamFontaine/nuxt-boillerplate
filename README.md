@@ -32,6 +32,14 @@ A modern **Nuxt 4** boilerplate with TypeScript, Nuxt UI, Prisma, and PostgreSQL
 - **[pnpm](https://pnpm.io/)** - Fast, efficient package manager with workspaces
 - **[Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog)** - Automated changelog generation
 
+### 🧪 Testing
+
+- **[Vitest](https://vitest.dev/)** - Unit testing framework with native TypeScript support
+- **[Playwright](https://playwright.dev/)** - End-to-end testing across browsers
+- **[@nuxt/test-utils](https://nuxt.com/docs/getting-started/testing)** - Nuxt-specific testing utilities
+- **[Vue Test Utils](https://vue-test-utils.vuejs.org/)** - Vue component testing utilities
+- **[Happy DOM](https://github.com/capricorn86/happy-dom)** - Lightweight DOM implementation for testing
+
 ### 🏗️ Architecture
 
 - **Monorepo Structure** - Shared utilities and types via `shared/` directory
@@ -216,6 +224,11 @@ addNotification({
 | `pnpm lint`               | Run ESLint + Prettier            |
 | `pnpm lint:eslint`        | Run ESLint only                  |
 | `pnpm lint:prettier`      | Run Prettier only                |
+| `pnpm test`               | Run all tests                    |
+| `pnpm test:unit`          | Run unit tests only              |
+| `pnpm test:e2e`           | Run E2E tests only               |
+| `pnpm test:watch`         | Run tests in watch mode          |
+| `pnpm test:coverage`      | Run tests with coverage report   |
 | `pnpm db:generate`        | Generate Prisma client           |
 | `pnpm db:push`            | Push schema to database          |
 | `pnpm db:studio`          | Open Prisma Studio               |
@@ -280,6 +293,92 @@ The project enforces quality through:
 - **ESLint** for code linting
 - **Prettier** for formatting
 - **TypeScript** for type safety
+
+### Testing
+
+The project includes a comprehensive testing setup with database isolation and multi-browser support:
+
+#### Unit Testing with Vitest
+
+- **Framework**: Vitest with native TypeScript support and Nuxt integration
+- **Location**: `tests/unit/components/`
+- **Configuration**: `vitest.config.ts` with Nuxt environment
+- **Features**: Auto-imports, global mocks, coverage reporting
+- **Database**: Uses `test_database` for isolated testing
+
+#### End-to-End Testing with Playwright
+
+- **Framework**: Playwright for cross-browser testing
+- **Location**: `tests/e2e/`
+- **Configuration**: `playwright.config.ts` with multi-browser matrix
+- **Browsers**: Chromium, Firefox, WebKit
+- **Features**: Visual testing, traces, screenshots, video recording
+
+#### Test Commands
+
+```bash
+# Run all tests (unit + E2E)
+pnpm test
+
+# Unit tests
+pnpm test:unit                    # Run unit tests
+pnpm test:unit:watch              # Watch mode for TDD
+pnpm test:unit:coverage           # With coverage report
+
+# E2E tests
+pnpm test:e2e                     # Run all browsers
+pnpm test:e2e:ui                  # Playwright UI mode
+pnpm test:e2e:debug               # Debug mode
+
+# Coverage
+pnpm test:coverage                # Generate coverage report
+```
+
+#### Test Structure
+
+```
+tests/
+├── setup/
+│   ├── vitest.ts               # Global test setup and mocks
+│   └── playwright.ts           # E2E database setup and seeding
+├── unit/
+│   └── components/             # Component unit tests
+│       ├── LanguageSwitcher.nuxt.spec.ts
+│       └── ThemeSwitcher.nuxt.spec.ts
+└── e2e/
+    └── home.spec.ts            # End-to-end user workflows
+```
+
+#### Key Testing Features
+
+- **Database Isolation**: Dedicated `test_database` for all tests
+- **Global Mocks**: Pre-configured mocks for i18n, router, notifications
+- **Auto-imports**: All Nuxt composables and utilities work in tests
+- **Multi-browser CI**: GitHub Actions runs tests on Chromium, Firefox, WebKit
+- **Coverage Reports**: Detailed coverage with V8 provider
+- **Visual Testing**: Screenshots and videos for failed E2E tests
+- **Accessibility Testing**: Built-in a11y checks in E2E tests
+
+#### Getting Started with Testing
+
+1. **Setup test database** (first time only):
+
+   ```bash
+   docker compose up -d              # Start PostgreSQL with test_database
+   ```
+
+2. **Run tests during development**:
+
+   ```bash
+   pnpm test:unit:watch             # TDD with auto-reload
+   pnpm test:e2e:ui                 # Visual E2E testing
+   ```
+
+3. **Before committing**:
+   ```bash
+   pnpm test                        # Run all tests
+   pnpm test:coverage               # Check coverage
+   ```
 
 ## 🚀 Deployment
 
