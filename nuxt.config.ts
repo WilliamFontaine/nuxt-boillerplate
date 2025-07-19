@@ -1,7 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/i18n', '@prisma/nuxt', '@nuxt/image'],
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/eslint',
+    '@nuxtjs/i18n',
+    '@prisma/nuxt',
+    '@nuxt/image',
+    '@nuxt/test-utils/module'
+  ],
 
   css: ['/assets/css/main.css'],
 
